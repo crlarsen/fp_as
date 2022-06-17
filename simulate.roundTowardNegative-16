@@ -1,0 +1,300 @@
+Vivado Simulator 2018.3
+Time resolution is 1 ps
+Test addition/subtraction circuit for binary16, roundTowardNegative:
+
+sNaN + {sNaN, qNaN, infinity, zero, subnormal, normal}:
+s (7c0a 100000 00000) = a (7c0a) + b (7c0b)
+s (7c0a 100000 00000) = a (7c0a) + b (7e0b)
+s (7c0a 100000 00000) = a (7c0a) + b (7c00)
+s (7c0a 100000 00000) = a (7c0a) + b (0000)
+s (7c0a 100000 00000) = a (7c0a) + b (000b)
+s (7c0a 100000 00000) = a (7c0a) + b (3c0b)
+
+{qNaN, infinity, zero, subnormal, normal} + sNaN:
+s (7c0b 100000 00000) = a (7e0a) + b (7c0b)
+s (7c0b 100000 00000) = a (7c00) + b (7c0b)
+s (7c0b 100000 00000) = a (0000) + b (7c0b)
+s (7c0b 100000 00000) = a (000a) + b (7c0b)
+s (7c0b 100000 00000) = a (3c0a) + b (7c0b)
+
+qNaN + {qNaN, infinity, zero, subnormal, normal}:
+s (7e0a 010000 00000) = a (7e0a) + b (7e0b)
+s (7e0a 010000 00000) = a (7e0a) + b (7c00)
+s (7e0a 010000 00000) = a (7e0a) + b (0000)
+s (7e0a 010000 00000) = a (7e0a) + b (000b)
+s (7e0a 010000 00000) = a (7e0a) + b (3c0b)
+
+{infinity, zero, subnormal, normal} + qNaN:
+s (7e0b 010000 00000) = a (7c00) + b (7e0b)
+s (7e0b 010000 00000) = a (0000) + b (7e0b)
+s (7e0b 010000 00000) = a (000a) + b (7e0b)
+s (7e0b 010000 00000) = a (3c0a) + b (7e0b)
+
++zero + {+infinity, +zero, +subnormal, +normal}:
+s (7c00 001000 00000) = a (0000) + b (7c00)
+s (0000 000100 00000) = a (0000) + b (0000)
+s (000b 000010 00000) = a (0000) + b (000b)
+s (3c0b 000001 00000) = a (0000) + b (3c0b)
+
+{+infinity, +subnormal, +normal} + +zero:
+s (7c00 001000 00000) = a (7c00) + b (0000)
+s (000a 000010 00000) = a (000a) + b (0000)
+s (3c0a 000001 00000) = a (3c0a) + b (0000)
+
++zero + {-infinity, -zero, -subnormal, -normal}:
+s (fc00 001000 00000) = a (0000) + b (fc00)
+s (0000 000100 00000) = a (0000) + b (8000)
+s (800b 000010 00000) = a (0000) + b (800b)
+s (bc0b 000001 00000) = a (0000) + b (bc0b)
+
+{+infinity, +subnormal, +normal} + -zero:
+s (7c00 001000 00000) = a (7c00) + b (8000)
+s (000a 000010 00000) = a (000a) + b (8000)
+s (3c0a 000001 00000) = a (3c0a) + b (8000)
+
+-zero + {+infinity, +zero, +subnormal, +normal}:
+s (7c00 001000 00000) = a (8000) + b (7c00)
+s (8000 000100 00000) = a (8000) + b (0000)
+s (000b 000010 00000) = a (8000) + b (000b)
+s (3c0b 000001 00000) = a (8000) + b (3c0b)
+
+{-infinity, -subnormal, -normal} + +zero:
+s (fc00 001000 00000) = a (fc00) + b (0000)
+s (800a 000010 00000) = a (800a) + b (0000)
+s (bc0a 000001 00000) = a (bc0a) + b (0000)
+
+-zero + {-infinity, -zero, -subnormal, -normal}:
+s (fc00 001000 00000) = a (8000) + b (fc00)
+s (8000 000100 00000) = a (8000) + b (8000)
+s (800b 000010 00000) = a (8000) + b (800b)
+s (bc0b 000001 00000) = a (8000) + b (bc0b)
+
+{-infinity, -subnormal, -normal} + -zero:
+s (fc00 001000 00000) = a (fc00) + b (8000)
+s (800a 000010 00000) = a (800a) + b (8000)
+s (bc0a 000001 00000) = a (bc0a) + b (8000)
+
++infinity + {+infinity, +subnormal, +normal}:
+s (7bff 000001 00000) = a (7c00) + b (7c00)
+s (7c00 001000 00000) = a (7c00) + b (000b)
+s (7c00 001000 00000) = a (7c00) + b (3c0b)
+
+{+subnormal, +normal} + +infinity:
+s (7c00 001000 00000) = a (000a) + b (7c00)
+s (7c00 001000 00000) = a (3c0a) + b (7c00)
+
++infinity + {-infinity, -subnormal, -normal}:
+s (7fff 010000 00001) = a (7c00) + b (fc00)
+s (7c00 001000 00000) = a (7c00) + b (800b)
+s (7c00 001000 00000) = a (7c00) + b (bc0b)
+
+{+subnormal, +normal} + -infinity:
+s (fc00 001000 00000) = a (000a) + b (fc00)
+s (fc00 001000 00000) = a (3c0a) + b (fc00)
+
+-infinity + {+infinity, +subnormal, +normal}:
+s (ffff 010000 00001) = a (fc00) + b (7c00)
+s (fc00 001000 00000) = a (fc00) + b (000b)
+s (fc00 001000 00000) = a (fc00) + b (3c0b)
+
+{-subnormal, -normal} + +infinity:
+s (7c00 001000 00000) = a (800a) + b (7c00)
+s (7c00 001000 00000) = a (bc0a) + b (7c00)
+
+-infinity + {-infinity, -subnormal, -normal}:
+s (fc00 001000 00000) = a (fc00) + b (fc00)
+s (fc00 001000 00000) = a (fc00) + b (800b)
+s (fc00 001000 00000) = a (fc00) + b (bc0b)
+
+{-subnormal, -normal} + -infinity:
+s (fc00 001000 00000) = a (800a) + b (fc00)
+s (fc00 001000 00000) = a (bc0a) + b (fc00)
+
+sNaN - {sNaN, qNaN, infinity, zero, subnormal, normal}:
+s (7c0a 100000 00000) = a (7c0a) - b (7c0b)
+s (7c0a 100000 00000) = a (7c0a) - b (7e0b)
+s (7c0a 100000 00000) = a (7c0a) - b (7c00)
+s (7c0a 100000 00000) = a (7c0a) - b (0000)
+s (7c0a 100000 00000) = a (7c0a) - b (000b)
+s (7c0a 100000 00000) = a (7c0a) - b (3c0b)
+
+{qNaN, infinity, zero, subnormal, normal} - sNaN:
+s (7c0b 100000 00000) = a (7e0a) - b (7c0b)
+s (7c0b 100000 00000) = a (7c00) - b (7c0b)
+s (7c0b 100000 00000) = a (0000) - b (7c0b)
+s (7c0b 100000 00000) = a (000a) - b (7c0b)
+s (7c0b 100000 00000) = a (3c0a) - b (7c0b)
+
+qNaN - {qNaN, infinity, zero, subnormal, normal}:
+s (7e0a 010000 00000) = a (7e0a) - b (7e0b)
+s (7e0a 010000 00000) = a (7e0a) - b (7c00)
+s (7e0a 010000 00000) = a (7e0a) - b (0000)
+s (7e0a 010000 00000) = a (7e0a) - b (000b)
+s (7e0a 010000 00000) = a (7e0a) - b (3c0b)
+
+{infinity, zero, subnormal, normal} - qNaN:
+s (7e0b 010000 00000) = a (7c00) - b (7e0b)
+s (7e0b 010000 00000) = a (0000) - b (7e0b)
+s (7e0b 010000 00000) = a (000a) - b (7e0b)
+s (7e0b 010000 00000) = a (3c0a) - b (7e0b)
+
++zero - {+infinity, +zero, +subnormal, +normal}:
+s (fc00 001000 00000) = a (0000) - b (7c00)
+s (0000 000100 00000) = a (0000) - b (0000)
+s (800b 000010 00000) = a (0000) - b (000b)
+s (bc0b 000001 00000) = a (0000) - b (3c0b)
+
+{+infinity, +subnormal, +normal} - +zero:
+s (7c00 001000 00000) = a (7c00) - b (0000)
+s (000a 000010 00000) = a (000a) - b (0000)
+s (3c0a 000001 00000) = a (3c0a) - b (0000)
+
++zero - {-infinity, -zero, -subnormal, -normal}:
+s (7c00 001000 00000) = a (0000) - b (fc00)
+s (0000 000100 00000) = a (0000) - b (8000)
+s (000b 000010 00000) = a (0000) - b (800b)
+s (3c0b 000001 00000) = a (0000) - b (bc0b)
+
+{+infinity, +subnormal, +normal} - -zero:
+s (7c00 001000 00000) = a (7c00) - b (8000)
+s (000a 000010 00000) = a (000a) - b (8000)
+s (3c0a 000001 00000) = a (3c0a) - b (8000)
+
+-zero - {+infinity, +zero, +subnormal, +normal}:
+s (fc00 001000 00000) = a (8000) - b (7c00)
+s (8000 000100 00000) = a (8000) - b (0000)
+s (800b 000010 00000) = a (8000) - b (000b)
+s (bc0b 000001 00000) = a (8000) - b (3c0b)
+
+{-infinity, -subnormal, -normal} - +zero:
+s (fc00 001000 00000) = a (fc00) - b (0000)
+s (800a 000010 00000) = a (800a) - b (0000)
+s (bc0a 000001 00000) = a (bc0a) - b (0000)
+
+-zero - {-infinity, -zero, -subnormal, -normal}:
+s (7c00 001000 00000) = a (8000) - b (fc00)
+s (8000 000100 00000) = a (8000) - b (8000)
+s (000b 000010 00000) = a (8000) - b (800b)
+s (3c0b 000001 00000) = a (8000) - b (bc0b)
+
+{-infinity, -subnormal, -normal} - -zero:
+s (fc00 001000 00000) = a (fc00) - b (8000)
+s (800a 000010 00000) = a (800a) - b (8000)
+s (bc0a 000001 00000) = a (bc0a) - b (8000)
+
++infinity - {+infinity, +subnormal, +normal}:
+s (7fff 010000 00001) = a (7c00) - b (7c00)
+s (7c00 001000 00000) = a (7c00) - b (000b)
+s (7c00 001000 00000) = a (7c00) - b (3c0b)
+
+{+subnormal, +normal} - +infinity:
+s (fc00 001000 00000) = a (000a) - b (7c00)
+s (fc00 001000 00000) = a (3c0a) - b (7c00)
+
++infinity - {-infinity, -subnormal, -normal}:
+s (7bff 000001 00000) = a (7c00) - b (fc00)
+s (7c00 001000 00000) = a (7c00) - b (800b)
+s (7c00 001000 00000) = a (7c00) - b (bc0b)
+
+{+subnormal, +normal} - -infinity:
+s (7c00 001000 00000) = a (000a) - b (fc00)
+s (7c00 001000 00000) = a (3c0a) - b (fc00)
+
+-infinity - {+infinity, +subnormal, +normal}:
+s (fc00 001000 00000) = a (fc00) - b (7c00)
+s (fc00 001000 00000) = a (fc00) - b (000b)
+s (fc00 001000 00000) = a (fc00) - b (3c0b)
+
+{-subnormal, -normal} - +infinity:
+s (fc00 001000 00000) = a (800a) - b (7c00)
+s (fc00 001000 00000) = a (bc0a) - b (7c00)
+
+-infinity - {-infinity, -subnormal, -normal}:
+s (ffff 010000 00001) = a (fc00) - b (fc00)
+s (fc00 001000 00000) = a (fc00) - b (800b)
+s (fc00 001000 00000) = a (fc00) - b (bc0b)
+
+{-subnormal, -normal} - -infinity:
+s (7c00 001000 00000) = a (800a) - b (fc00)
+s (7c00 001000 00000) = a (bc0a) - b (fc00)
+
+Calculate Fibonacci Series:
+1 + 1:
+s (4000 000001 00000) = a (3c00) + b (3c00)
+
+1 + 2:
+s (4200 000001 00000) = a (3c00) + b (4000)
+2 + 1:
+s (4200 000001 00000) = a (4000) + b (3c00)
+
+2 + 3:
+s (4500 000001 00000) = a (4000) + b (4200)
+3 + 2:
+s (4500 000001 00000) = a (4200) + b (4000)
+
+3 + 5:
+s (4800 000001 00000) = a (4200) + b (4500)
+5 + 3:
+s (4800 000001 00000) = a (4500) + b (4200)
+
+5 + 8:
+s (4a80 000001 00000) = a (4500) + b (4800)
+8 + 5:
+s (4a80 000001 00000) = a (4800) + b (4500)
+
+8 + 13:
+s (4d40 000001 00000) = a (4800) + b (4a80)
+13 + 8:
+s (4d40 000001 00000) = a (4a80) + b (4800)
+
+13 + 21:
+s (5040 000001 00000) = a (4a80) + b (4d40)
+21 + 13:
+s (5040 000001 00000) = a (4d40) + b (4a80)
+
+21 + 34:
+s (52e0 000001 00000) = a (4d40) + b (5040)
+34 + 21:
+s (52e0 000001 00000) = a (5040) + b (4d40)
+
+34 + 55:
+s (5590 000001 00000) = a (5040) + b (52e0)
+55 + 34:
+s (5590 000001 00000) = a (52e0) + b (5040)
+
+55 + 89:
+s (5880 000001 00000) = a (52e0) + b (5590)
+89 + 55:
+s (5880 000001 00000) = a (5590) + b (52e0)
+
+89 + 144:
+s (5b48 000001 00000) = a (5590) + b (5880)
+144 + 89:
+s (5b48 000001 00000) = a (5880) + b (5590)
+
+144 + 233:
+s (5de4 000001 00000) = a (5880) + b (5b48)
+233 + 144:
+s (5de4 000001 00000) = a (5b48) + b (5880)
+
+233 + 377:
+s (60c4 000001 00000) = a (5b48) + b (5de4)
+377 + 233:
+s (60c4 000001 00000) = a (5de4) + b (5b48)
+
+377 + 610:
+s (63b6 000001 00000) = a (5de4) + b (60c4)
+610 + 377:
+s (63b6 000001 00000) = a (60c4) + b (5de4)
+
+610 + 987:
+s (663d 000001 00000) = a (60c4) + b (63b6)
+987 + 610:
+s (663d 000001 00000) = a (63b6) + b (60c4)
+
+987 + 1597:
+s (690c 000001 00000) = a (63b6) + b (663d)
+1597 + 987:
+s (690c 000001 00000) = a (663d) + b (63b6)
+
+End of tests :              1750000
