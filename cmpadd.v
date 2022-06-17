@@ -23,18 +23,18 @@
 //              SW 3: roundTowardNegative
 //
 //              Switches 13-15 select debugging information.
-//              | SW 13 | SW 14 | SW 15
+//              | SW 15 | SW 14 | SW 13 |
 //              +-------+-------+-------+-----------------------------------------
-//              |   1   |   x   |   x   | Show rounding mode on LEDs 0-4, and
+//              |   x   |   x   |   1   | Show rounding mode on LEDs 0-4, and
 //              |       |       |       | value of \subtract? on LED 5.
 //              +-------+-------+-------+-----------------------------------------
 //              |   0   |   0   |   0   | Display 'b' on LEDs
 //              +-------+-------+-------+-----------------------------------------
-//              |   0   |   0   |   1   | Display 'a' on LEDs
+//              |   0   |   1   |   0   | Display 'a' on LEDs
 //              +-------+-------+-------+-----------------------------------------
-//              |   0   |   1   |   0   | Display sum from fp_add_exact on LEDs
+//              |   1   |   0   |   0   | Display sum from fp_add_exact on LEDs
 //              +-------+-------+-------+-----------------------------------------
-//              |   0   |   1   |   1   | Display sum/difference from fp_as on
+//              |   1   |   1   |   0   | Display sum/difference from fp_as on
 //              |       |       |       | LEDs
 //              +-------+-------+-------+-----------------------------------------
 //
