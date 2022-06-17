@@ -17,13 +17,13 @@ Only one DIP switch in the range of 0 through 4 is allowed in the ON position at
 | DIP Switch 2 | roundTowardPositive |
 | DIP Switch 2 | roundTowardNegative |
 
-| SW 13 | SW 14 | SW 15 | Switches 13-15 select debugging information. |
+| SW 15 | SW 14 | SW 13 | Switches 13-15 select debugging information. |
 |-------|-------|-------|----------------------------------------------|
-|   1   |   x   |   x   | Show rounding mode on LEDs 0-4, and value of \subtract? on LED 5. |
+|   x   |   x   |   1   | Show rounding mode on LEDs 0-4, and value of \subtract? on LED 5. |
 |   0   |   0   |   0   | Display 'b' on LEDs
-|   0   |   0   |   1   | Display 'a' on LEDs
-|   0   |   1   |   0   | Display sum from fp_add_exact on LEDs
-|   0   |   1   |   1   | Display sum/difference from fp_as on LEDs. |
+|   0   |   1   |   0   | Display 'a' on LEDs
+|   1   |   0   |   0   | Display sum from fp_add_exact on LEDs
+|   1   |   1   |   0   | Display sum/difference from fp_as on LEDs. |
 
 The code is explained in the video series [Building an FPU in Verilog](https://www.youtube.com/watch?v=rYkVdJnVJFQ&list=PLlO9sSrh8HrwcDHAtwec1ycV-m50nfUVs).
 See the video *Building an FPU in Verilog: Adding Floating Point Numbers, Part 3*.
