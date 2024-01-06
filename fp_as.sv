@@ -55,7 +55,7 @@ module fp_as(a, b, \subtract? , ra, s, sFlags, exception);
   reg signed [NSIG+1:0] shiftAmt;
   // augendSig: Significand of the operand with the larger exponent
   // addendSig: Significand of the operand with the smaller exponent
-  // Note: The exponent of the augend may note be strictly larger than
+  // Note: The exponent of the augend may not be strictly larger than
   //       the exponent of the addend. The two exponents may be equal
   //       but the exponent of the augend will never be smaller than
   //       the exponent of the addend.
@@ -79,7 +79,7 @@ module fp_as(a, b, \subtract? , ra, s, sFlags, exception);
   // bigExp:  Renormalized exponent if adding the augend/addend
   //          significands caused the MSB to be left of bit NSIG.
   //          ***** See bigSig above.
-  // normExp: Renormalized exponent if the augend/addend has opposite
+  // normExp: Renormalized exponent if the augend/addend have opposite
   //          signs.
   //          ***** See normSig above.
   // biasExp: Sum significand after adding the BIAS value into normExp.
@@ -95,7 +95,7 @@ module fp_as(a, b, \subtract? , ra, s, sFlags, exception);
   reg [CLOG2_NSIG-1:0] na;
   reg [NSIG+2:-NSIG-3] mask = ~0;
 
-  wire Cout1, Cout2;
+  wire Cout1;
   reg subtract, e0, si;
 
   reg [NEXP+NSIG:0] alwaysS; // Sum/Difference generated inside the
@@ -245,17 +245,13 @@ module fp_as(a, b, \subtract? , ra, s, sFlags, exception);
   // absolute value. If sumSig is positive, or zero, the output from this
   // adder is sumSig.
   if (NSIG == 10)
-    padder26 U26({2*NSIG+6{1'b0}}, sumSig^{2*NSIG+6{sumSig[NSIG+2]}},
-                 sumSig[NSIG+2], absSig, Cout2);
+    abs26 U26(sumSig, absSig);
   else if (NSIG == 23)
-    padder52 U52({2*NSIG+6{1'b0}}, sumSig^{2*NSIG+6{sumSig[NSIG+2]}},
-                 sumSig[NSIG+2], absSig, Cout2);
+    abs52 U52(sumSig, absSig);
   else if (NSIG == 52)
-    padder110 U110({2*NSIG+6{1'b0}}, sumSig^{2*NSIG+6{sumSig[NSIG+2]}},
-                   sumSig[NSIG+2], absSig, Cout2);
+    abs110 U110(sumSig, absSig);
   else if (NSIG == 112)
-    padder230 U230({2*NSIG+6{1'b0}}, sumSig^{2*NSIG+6{sumSig[NSIG+2]}},
-                   sumSig[NSIG+2], absSig, Cout2);
+    abs230 U230(sumSig, absSig);
 
   // See if the addition caused a carry-out. If so, adjust the significand
   // and the exponent.
